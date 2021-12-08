@@ -17,6 +17,25 @@ zodiac_dict = {
 }
 
 
+types = {
+    'fire': ['aries', 'leo', 'sagittarius'],
+    'earth': ['taurus', 'virgo', 'capricorn'],
+    'air': ['gemini', 'libra', 'aquarius'],
+    'water': ['cancer', 'scorpio', 'pisces'],
+}
+
+def get_yyyy_converters(request, znak_zodiaka):
+    return HttpResponse(f'Вы передали число из четырех цыфр - {znak_zodiaka}')
+
+
+def get_my_float_converters(request, znak_zodiaka):
+    return HttpResponse(f'Вы передали вещественное число - {znak_zodiaka}')
+
+
+def get_my_date_converters(request, znak_zodiaka):
+    return HttpResponse(f'Вы передали дату: {znak_zodiaka}')
+
+
 def index(request):
     zodiac = list(zodiac_dict)
     li_elements = ''
@@ -29,6 +48,35 @@ def index(request):
     </ol>
     """
     return HttpResponse(response)
+
+
+def get_types(request):
+    elements = list(types)
+    li_types = ''
+    for el in elements:
+        redirect_path = reverse('type-name', args=[el])
+        li_types += f"<li><a href='{redirect_path}'>{el.title()}</a></li>"
+    response = f"""
+    <ol>
+        {li_types}
+    </ol>
+    """
+    return HttpResponse(response)
+
+
+def get_elements(request, element):
+    list_of_sing_element = types[element]
+    li_sings_of_element = ''
+    for sing in list_of_sing_element:
+        redirect_url = reverse('goroscop-name', args=[sing])
+        li_sings_of_element += f"<li><a href='{redirect_url}'>{sing.title()}</a></li>"
+    response = f"""
+    <ol>
+        {li_sings_of_element}
+    </ol>
+    """
+    return HttpResponse(response)
+
 
 
 def get_info_about_sign_zodiac(request, znak_zodiaka: str):
