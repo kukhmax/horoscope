@@ -2,6 +2,7 @@
 
 
 {% load static %}
+{% load my_filters %}
 
 {% block css_additional %}
 <link rel="stylesheet" href=" {% static 'goroscop/css/info.css' %} ">
@@ -14,7 +15,7 @@
 {% block content %}
 
     {% include 'includes/navbar.html' %}
-    <h1>{{ sing_name|upper }}</h1>
+    <h1>{{ description|split|first }}</h1>
     {% if description is None %}
         <h2>Неправильный знак зодиака - {{ sing|upper }}</h2>
     {% else %}
