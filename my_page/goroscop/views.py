@@ -97,13 +97,15 @@ def get_info_about_sign_zodiac(request, znak_zodiaka: str):
     description = zodiac_dict.get(znak_zodiaka)
     data = {
         'description_zodiac': description,
-        'sing': znak_zodiaka.title(),
+        'sing': znak_zodiaka,
         'my_int': 5,
         'my_float': 7.7575,
         'my_list': [1, 2, 3],
         'my_tuple': (1, 2, 3, 4, 5),
         'my_dict': {'name': 'Jack', 'age': 40},
         'my_class': Person('Will', 55),
+        'value': [],
+        'value1': [9,0,0],
     }
     return render(request, 'goroscop/info_zodiac.html', context=data)
 

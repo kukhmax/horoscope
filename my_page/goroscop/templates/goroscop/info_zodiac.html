@@ -2,16 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Гороскоп для {{ sing }}</title>
+        <title>Гороскоп для {{ sing|capfirst}}</title>
     </head>
     <body>
         <h1>Приложение Гороскоп</h1>
-        <h2>{{ description_zodiac }}</h2>
-        <p>число {{ my_int }}</p>
+        <h2>{{ description_zodiac|title }}</h2>
+        <p>число {{ my_int|add:50 }}</p>
+        <p>число {{ my_int|add:my_float }}</p>
         <p>float {{ my_float }}</p>
         <p>tuple is {{ my_tuple }}</p>
         <p>list is {{ my_list}}</p>
         <p>dict is {{ my_dict }}, key is {{ my_dict.name }}</p> <! -- в словаре обращаемся к ключу через точку-->
         <p>экземпляр класса {{my_class }}  {{ my_class.age }}</p>
+        <p>default {{ value|default:"nothing" }} {{ value1|default:"nothing" }}</p>
     </body>
 </html>
