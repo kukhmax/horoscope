@@ -40,17 +40,13 @@ def get_my_date_converters(request, znak_zodiaka):
 
 
 def index(request):
-    zodiac = list(zodiac_dict)
-    li_elements = ''
-    for sign in zodiac:
-        redirect_path = reverse('goroscop-name', args=[sign])
-        li_elements += f"<li><a href='{redirect_path}'>{sign.title()}</a></li>"
-    response = f"""
-    <ol>
-        {li_elements}
-    </ol>
-    """
-    return HttpResponse(response)
+    zodiacs = list(zodiac_dict)
+    # f"<li><a href='{redirect_path}'>{sign.title()}</a></li>"
+    context = {
+        'zodiacs': zodiacs,
+        'zodiac_dict': zodiac_dict,
+    }
+    return render(request, 'goroscop/index.html', context=context)
 
 
 def get_types(request):
