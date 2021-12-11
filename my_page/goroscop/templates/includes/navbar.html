@@ -1,9 +1,7 @@
 <nav>
-    <a href="{% url 'goroscop-index' %}">Main</a> |
-    <a href="https://www.homeenglish.ru/OtherGoroscop.htm">Source</a>
+    <a href="{% url 'goroscop-index' %}">Main</a>    
     {% for zodiac in zodiacs %}
-        | <a href="{% url 'goroscop-name' znak_zodiaka=zodiac%}">{{ zodiac|title }}</a>
+        <a href="{% url 'goroscop-name' znak_zodiaka=zodiac%}">{{ zodiac|title }}</a>
     {% endfor %}
+    <a href="https://www.homeenglish.ru/OtherGoroscop.htm">Source</a>
 </nav>
-<p> a = {{ a }}</p>
-<p> b = {{ b }}</p>

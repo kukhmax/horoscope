@@ -1,20 +1,26 @@
 {% extends 'base.html' %}
 
 
+{% load static %}
+
+{% block css_additional %}
+<link rel="stylesheet" href=" {% static 'goroscop/css/index.css' %} ">
+{% endblock%}
+
 
 {% block title %}
     Menu
 {% endblock%}
 
-{% block content %}
 
-    {% include 'includes/navbar.html' only with a=100 b=200 %}
+
+{% block content %}
+    <h1>Приложение Гороскоп</h1>
     <ul>
         {% for zodiac in zodiacs %}
             <li> <a href="{% url 'goroscop-name' znak_zodiaka=zodiac%}">{{ zodiac|title }}</a> </li>
             
         {% endfor %}
-    </ul> 
-    {% include 'includes/navbar.html' %} 
+    </ul>
 {% endblock%}
        

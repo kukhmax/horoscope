@@ -78,9 +78,12 @@ def get_elements(request, element):
 
 def get_info_about_sign_zodiac(request, znak_zodiaka: str):
     description = zodiac_dict.get(znak_zodiaka)
+    zodiacs = list(zodiac_dict)
     context = {
         'description': description,
         'sing': znak_zodiaka,
+        'sing_name': description.split()[0],
+        'zodiacs': zodiacs,
         
     }
     return render(request, 'goroscop/info_zodiac.html', context=context)
