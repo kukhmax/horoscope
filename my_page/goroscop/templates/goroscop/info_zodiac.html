@@ -2,10 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Гороскоп</title>
+        <title>Гороскоп для {{ sing }}</title>
     </head>
     <body>
         <h1>Приложение Гороскоп</h1>
-        <h2>Близнецы - третий знак зодиака, планета Меркурий (с 22 мая по 21 июня)</h2>
+        <h2>{{ description_zodiac }}</h2>
+        <p>число {{ my_int }}</p>
+        <p>float {{ my_float }}</p>
+        <p>tuple is {{ my_tuple }}</p>
+        <p>list is {{ my_list}}</p>
+        <p>dict is {{ my_dict }}, key is {{ my_dict.name }}</p> <! -- в словаре обращаемся к ключу через точку-->
+        <p>экземпляр класса {{my_class }}  {{ my_class.age }}</p>
     </body>
 </html>
