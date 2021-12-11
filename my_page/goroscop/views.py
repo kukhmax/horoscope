@@ -44,7 +44,6 @@ def index(request):
     # f"<li><a href='{redirect_path}'>{sign.title()}</a></li>"
     context = {
         'zodiacs': zodiacs,
-        'zodiac_dict': zodiac_dict,
     }
     return render(request, 'goroscop/index.html', context=context)
 
@@ -77,39 +76,20 @@ def get_elements(request, element):
     return HttpResponse(response)
 
 
-@dataclass
-class Person:
-    name: str
-    age: int
-
-
-    def __str__(self) -> str:
-        return f'This is {self.name}'
-        
-
-
-
 def get_info_about_sign_zodiac(request, znak_zodiaka: str):
     description = zodiac_dict.get(znak_zodiaka)
-    data = {
-        'description_zodiac': description,
+    context = {
+        'description': description,
         'sing': znak_zodiaka,
-        'my_int': 5,
-        'my_float': 7.7575,
-        'my_list': [1, 2, 3],
-        'my_tuple': (1, 2, 3, 4, 5),
-        'my_dict': {'name': 'Jack', 'age': 40},
-        'my_class': Person('Will', 55),
-        'value': [],
-        'value1': [9,0,0],
+        
     }
-    return render(request, 'goroscop/info_zodiac.html', context=data)
+    return render(request, 'goroscop/info_zodiac.html', context=context)
 
 
 def get_info_about_sign_zodiac_by_number(request, znak_zodiaka: int):
-    zodiac = list(zodiac_dict)
-    if znak_zodiaka > len(zodiac):
+    zodiacs = list(zodiac_dict)
+    if znak_zodiaka > len(zodiacs):
         return HttpResponse(f'Неправильный порядковый номер зодиака - {znak_zodiaka}')
-    name_zodiac = zodiac[znak_zodiaka - 1]
+    name_zodiac = zodiacs[znak_zodiaka - 1]
     redirect_url = reverse('goroscop-name', args=(name_zodiac, ))
     return HttpResponseRedirect(redirect_url)

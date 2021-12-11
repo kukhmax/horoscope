@@ -1,35 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Гороскоп для {{ sing|capfirst}}</title>
-    </head>
-    <body>
-        <h1>Приложение Гороскоп</h1>
+{% extends 'base.html' %}
 
-        {% if description is None %}
-            <h2>Неправильный знак зодиака - {{ sing|upper }}</h2>
-        {% else %}
-            <h2> {{ description|title|safe }} </h2>
-        {% endif %}
 
-        {% if my_list|length >= 3 %}
-            <p>список из трех или более элементов  {{ my_list }}</p>
-        {% elif my_list|length == 2 %}
-            <p>список из двух элементов  {{ my_list }}</p>
-        {% elif my_list|length == 1 %}
-            <p>список из одного элемента  {{ my_list }}</p>
-        {% else %}
-            <p>Empty list : {{ my_list }}</p>
-        {% endif %}
+{% block title %}
+    Гороскоп для {{ sing|upper}}
+{% endblock%}
 
-        <p>число {{ my_int|add:50 }}</p>
-        <p>число {{ my_int|add:my_float }}</p>
-        <p>float {{ my_float }}</p>
-        <p>tuple is {{ my_tuple }}</p>
-        <p>list is {{ my_list}}</p>
-        <p>dict is {{ my_dict }}, key is {{ my_dict.name }}</p> <! -- в словаре обращаемся к ключу через точку-->
-        <p>экземпляр класса {{my_class }}  {{ my_class.age }}</p>
-        <p>default {{ value|default:"nothing" }} {{ value1|default:"nothing" }}</p>
-    </body>
-</html>
+{% block content %}
+
+    {% include 'includes/navbar.html' %}
+    {% if description is None %}
+        <h2>Неправильный знак зодиака - {{ sing|upper }}</h2>
+    {% else %}
+        <h2> {{ description|capfirst|safe }} </h2>
+    {% endif %}
+{% endblock%}
+       
